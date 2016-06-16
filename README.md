@@ -24,13 +24,15 @@ not familiar with modern js.
 ## Motivation
 
 I know there are other vue.js plugins to paginate. Like [vue-paginate](https://github.com/TahaSh/vue-paginate).
+
 It is a good project and have a good code style and the author is a good guy. I promise.
 
 So why did I write this project?
 
-Because when did I use vue-paginate, I found I could't use it very well. So I decided to write another project to support my own job.
+Because when did I use vue-paginate, I found I could't use it very well. So I decided to write another to support my own job.
 
-Maybe when you see this sentences, [vue-paginate](https://github.com/TahaSh/vue-paginate). could be strong enough. So you could try to use it.
+Maybe when you see this sentences, [vue-paginate](https://github.com/TahaSh/vue-paginate). could be strong enough. 
+So you could try to use it.
 
 ## Usage
 
