@@ -47,7 +47,7 @@ new Vue({
 
 ```javascript
 <!-- data -->
-<ul v-paginator:items="products" :perp="4" >
+<ul v-paginator:items="langs" :perp="4" >
   <li v-for="lang in langs">
     {{ lang }}
   </li>
