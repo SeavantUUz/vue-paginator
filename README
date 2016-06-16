@@ -1,0 +1,94 @@
+# vue-paginator
+
+> The simplest plugin to support your pagination need.
+
+## Setup
+
+Just download this script in anywhere your project could find it.
+
+```javascript
+Var VuePaginator = require('./vue-paginator.js')
+```
+
+## Dependency
+
+No, it doesn't depend any third-dependencies except Vue.js --- anyway, it is a plugin to Vue.js.
+
+## Suggestion
+
+I think it is a simple tutorial to know how to write a plugin to vue.js. If it is possible, please read it.
+
+If you wanted to use this script by npm, please mail me. I would learn some basic rules to use npm --- as you see, I'm
+not familiar with modern js.
+
+## Motivation
+
+I know there are other vue.js plugins to paginate. Like [vue-paginate](https://github.com/TahaSh/vue-paginate).
+It is a good project and have a good code style and the author is a good guy. I promise.
+
+So why did I write this project?
+
+Because when did I use vue-paginate, I found I could't use it very well. So I decided to write another project to support my own job.
+
+Maybe when you see this sentences, [vue-paginate](https://github.com/TahaSh/vue-paginate). could be strong enough. So you could try to use it.
+
+## Usage
+
+modify from [vue-paginate](https://github.com/TahaSh/vue-paginate).
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    langs: ['PHP', 'JavaScript', 'HTML', 'CSS', 'Ruby', 'Python']
+  }
+});
+```
+
+```javascript
+<!-- data -->
+<ul v-paginator:items="products" :perp="4" >
+  <li v-for="lang in langs">
+    {{ lang }}
+  </li>
+</ul>
+
+<!-- links -->
+<ul>
+  <li v-for="page in pages">
+    <a @click="to(page)" href="#">
+      {{ page }}
+    </a>
+  </li>
+</ul>
+```
+
+**:perp** means **perPageItems**, **pages** is a property which I injected to the context. it is a list of pages number;
+**to** is a method to change the page.
+
+if you want to use nextPage and prevPage, just modify the example like this:
+
+```html
+    <a @click="prev()"  href="#">
+    上一页
+    </a>
+    <a @click="next()" href="#">
+    下一页
+    </a>
+```
+
+It is also that I injected **prev()** method and **next()** method to context.
+
+Others properties I gave them to you listed below.
+
+* hasPrev
+* hasNext
+* OriginalList
+
+Remember, you could use them even if products are got by async.
+
+Issue me if any bugs found.
+
+
+
+
