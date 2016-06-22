@@ -57,7 +57,7 @@ new Vue({
 
 <!-- links -->
 <ul>
-  <li v-for="page in pages">
+  <li v-for="page in pages()">
     <a @click="to(page)" href="#">
       {{ page }}
     </a>
@@ -81,11 +81,24 @@ if you want to use nextPage and prevPage, just modify the example like this:
 
 It is also that I injected **prev()** method and **next()** method to context.
 
-Others properties I gave them to you listed below.
+I also supplied you these methods or properties:
 
-* hasPrev
-* hasNext
-* OriginalList
+* hasPrev()
+* hasNext()
+* originalList
+
+If you want to toggle next/prev button when you clicked, you could write as this:
+
+```html
+    <a @click="prev()" v-show="hasPrev()"  href="#">
+    prev
+    </a>
+    <a @click="next()" v-show="hasNext()" href="#">
+    next
+    </a>
+```
+
+Maybe you prefer hasPrev/hasNext are properties rather than methods. I made some tests on these, and I found it is difficult to trigger watcher updating values So I had to abandon this idea.
 
 Remember, you could use them even if products are got by async.
 

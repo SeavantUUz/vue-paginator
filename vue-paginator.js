@@ -7,18 +7,30 @@
         self.perPageItems = perPageItems;
         self.currentPage = 1;
 
-        self.pages = Math.floor((self._items.length - 1) / self.perPageItems + 1);
+        self._pages = Math.floor((self._items.length - 1) / self.perPageItems + 1);
 
-        self.hasPrev = self.currentPage > 1;
+        self._hasPrev = self.currentPage > 1;
 
-        self.hasNext = self.currentPage < self.pages ;
+        self._hasNext = self.currentPage < self._pages ;
+
+        self.pages = function () {
+            return self._pages;
+        };
+
+        self.hasPrev = function () {
+            return self._hasPrev;
+        };
+
+        self.hasNext = function () {
+            return self._hasNext;
+        };
 
         self.prevPage = function () {
             return Math.max(1, self.currentPage - 1);
         };
 
         self.nextPage = function () {
-            return Math.min(self.pages, self.currentPage + 1);
+            return Math.min(self._pages, self.currentPage + 1);
         };
 
         self.items = function () {
@@ -29,17 +41,17 @@
 
         self.setItems = function (items) {
             self._items = items;
-            self.pages = Math.floor((self._items.length - 1) / self.perPageItems + 1);
-            self.hasPrev = self.currentPage > 1;
-            self.hasNext = self.currentPage < self.pages;
+            self._pages = Math.floor((self._items.length - 1) / self.perPageItems + 1);
+            self._hasPrev = self.currentPage > 1;
+            self._hasNext = self.currentPage < self._pages;
         };
 
         self.setCurrentPage = function (currentPage) {
 
-            if(currentPage > 0 && currentPage < self.pages + 1) {
+            if(currentPage > 0 && currentPage < self._pages + 1) {
                 self.currentPage = currentPage;
-                self.hasPrev = self.currentPage > 1;
-                self.hasNext = self.currentPage < self.pages;
+                self._hasPrev = self.currentPage > 1;
+                self._hasNext = self.currentPage < self._pages;
             }
         };
         
@@ -92,7 +104,6 @@
                 vm['next'] = function () {
                     var page = this.paginator.nextPage();
                     this.paginator.setCurrentPage(page);
-                    console.log(this.paginator.hasNext);
                 };
 
                 vm['prev'] = function () {
@@ -100,17 +111,14 @@
                     this.paginator.setCurrentPage(page);
                 };
 
-
+                this.vm.$set('pages', iterPage(this.paginator.pages));
+                this.vm.$set('hasPrev', this.paginator.hasPrev);
+                this.vm.$set('hasNext', this.paginator.hasNext);
             },
 
             update: function (newValue, oldValue) {
                 var paginator = this.vm['paginator'];
                 paginator.setItems(newValue);
-                this.vm.$set('pages', iterPage(paginator.pages));
-                this.vm.$set('hasPrev', paginator.hasPerv);
-                this.vm.$set('hasNext', paginator.hasNext);
-                
-
                 this.set(paginator.items());
             }
 
