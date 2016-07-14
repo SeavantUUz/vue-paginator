@@ -33,6 +33,10 @@
             return Math.min(self._pages, self.currentPage + 1);
         };
 
+        self.current = function () {
+            return self.currentPage;
+        };
+
         self.items = function () {
             var start = (self.currentPage - 1) * self.perPageItems;
             var end = self.currentPage * self.perPageItems;
@@ -46,6 +50,7 @@
             self._hasNext = self.currentPage < self._pages;
         };
 
+
         self.setCurrentPage = function (currentPage) {
 
             if(currentPage > 0 && currentPage < self._pages + 1) {
@@ -54,7 +59,7 @@
                 self._hasNext = self.currentPage < self._pages;
             }
         };
-        
+
         return self;
 
     };
@@ -66,7 +71,7 @@
         }
         return l;
     };
-    
+
     var VuePaginator = {};
 
     VuePaginator.install = function (Vue) {
@@ -98,22 +103,24 @@
                 });
 
                 vm['to'] = function (page) {
-                   this.paginator.setCurrentPage(page);
+                   that.paginator.setCurrentPage(page);
                 };
 
                 vm['next'] = function () {
-                    var page = this.paginator.nextPage();
-                    this.paginator.setCurrentPage(page);
+                    var page = that.paginator.nextPage();
+                    that.paginator.setCurrentPage(page);
                 };
 
                 vm['prev'] = function () {
-                    var page = this.paginator.prevPage();
-                    this.paginator.setCurrentPage(page);
+                    var page = that.paginator.prevPage();
+                    that.paginator.setCurrentPage(page);
                 };
 
-                this.vm.$set('pages', iterPage(this.paginator.pages));
+                this.vm.$set('pages', this.paginator.pages);
                 this.vm.$set('hasPrev', this.paginator.hasPrev);
                 this.vm.$set('hasNext', this.paginator.hasNext);
+                this.vm.$set('current', this.paginator.currentPage);
+                this.vm.$set('iterPage', iterPage)
             },
 
             update: function (newValue, oldValue) {

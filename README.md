@@ -57,7 +57,7 @@ new Vue({
 
 <!-- links -->
 <ul>
-  <li v-for="page in pages()">
+  <li v-for="page in iterPage(pages())">
     <a @click="to(page)" href="#">
       {{ page }}
     </a>
